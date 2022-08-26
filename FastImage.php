@@ -231,8 +231,8 @@ class FastImage
             while (strlen($this->str) < $end && $response !== false) {
                 // read more from the file handle
                 $need = $end - ftell($this->handle);
-
-                if ($response = fread($this->handle, $need)) {
+                $response = fread($this->handle, $need);
+                if ($response !== false) {
                     $this->str .= $response;
                 } else {
                     return false;
